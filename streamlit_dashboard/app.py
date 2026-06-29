@@ -9,10 +9,6 @@ model performance
 
 import streamlit as st
 import pandas as pd
-df = pd.read_csv("../data/cybersecurity_model.csv")
-st.title("CyberGuard AI Dashboard")
-st.subheader("Overview")
-st.write(f"Total Records: {len(df.index)}")
 
 attackcount = (df["label"] == 1).sum()
 st.write(f"Total Attacks: {attackcount}")
@@ -48,12 +44,9 @@ anomalies = df[df["prediction"]==-1]
 st.write("Confusion Matrix")
 st.dataframe(anomalies["label"].value_counts())
 
-st.write("Statistics obtained")
 rec_num = (anomalies["label"] == 1).sum()
 rec_den = (df["label"] == 1).sum()
-st.write(f"Recall: {int(rec_num / rec_den * 100)}%")
 
-#if can change brute force to general code
 brute_num = (anomalies["attack_type"] == "brute-force").sum()
 brute_den = (df["attack_type"] == "brute-force").sum()
 st.write(f"% Brute force attacks detected = {int(brute_num / brute_den * 100)}%")
