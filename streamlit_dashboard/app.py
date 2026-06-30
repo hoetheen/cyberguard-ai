@@ -25,21 +25,27 @@ from config import (
 
 df = pd.read_csv("data/cybersecurity_model.csv")
 st.title("CyberGuard AI")
+#Project Description
+st.write("")
 
 #Dataset preview
 st.markdown('<p style="font-size:36px;">Dataset Preview</p>', unsafe_allow_html=True)
 st.dataframe(df.head(3))
 
-st.subheader("Total Records")
-st.write(f"{len(df.index)}")
-
 attackcount = (df["label"] == 1).sum()
-st.subheader("Total Attacks")
-st.write(f"{attackcount}")
-
 benigncount = (df["label"]==0).sum()
-st.subheader("Benign")
-st.write(f"{benigncount}")
+number_of_features = len(features)
+column_count = df.shape[1]
+
+st.code(f"""+------------+-------------+
+| Records     | Attacks    |
+| {len(df.index)}        | {attackcount}        |
++------------+-------------+""")
+
+st.code(f"""+------------+-------------+
+| Benign     |Features Used|
+| {benigncount}       | {number_of_features}/{column_count}        |
++------------+-------------+""")
 
 st.subheader("Attack Type Distribution")
 attack_type_table = df.value_counts(df["attack_type"])
@@ -47,23 +53,17 @@ st.dataframe(attack_type_table)
 
 #display bar chart
 attack_type_table = attack_type_table.to_frame()
-#st.write(f"{type(attack_type_table)}")
 attack_type_table.drop("benign", inplace=True)
-#st.dataframe(attack_type_table)
 st.bar_chart(attack_type_table)
 
-#Create config.py later
-column_count = df.shape[1]
-count = len(features)
-st.markdown('<p style="font-size:36px;">Features Used(6/14)</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size:36px;">Features Used</p>', unsafe_allow_html=True)
 for feature in features:
-    st.write(f"{feature}")
-
+    st.write(f"- {feature}")
 
 
 #Model Configuration
 st.markdown('<p style="font-size:36px;">Model Configuration</p>', unsafe_allow_html=True)
-st.write("Algorithm Used: Isolation Forest")
+st.write(f"Algorithm Used: {algorithm}")
 st.markdown('<p style="font-size:26px;">Parameters</p>', unsafe_allow_html=True)
 st.write(f"Contamination = {contamination}")
 st.write(f"n_estimators = {n_estimators}")
@@ -108,6 +108,10 @@ stats_table = pd.DataFrame(stats_data,
                                   "% Brute Force Attacks Detected"],
                            columns=["Percentage"])
 st.dataframe(stats_table)
+
+#Conclusion
+st.subheader("Key Takeaways")
+st.write("")
 
 
 # streamlit run streamlit_dashboard/app.py
