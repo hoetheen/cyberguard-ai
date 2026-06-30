@@ -10,12 +10,12 @@ Contents
 7. Limitations
 8. Future Improvements
 
-Project Overview(7/10)
+Project Overview
 Recent cybersecurity attacks pose an even greater threat to the society than before, and it is difficult for us to detect and prevent these attacks from happening without the help of technology.
 
 This program consists of an anomaly detection model trains from previous attacks, and learns its features and properties. This allows it to better predict future attacks through feature recognition. 
 
-This system would benefit small businesses that aim to boost fraud prevention and reduce cyberattacks
+This system would benefit small businesses that aim to boost fraud prevention and reduce cyberattacks.
 
 Technologies used
 - Python
@@ -35,9 +35,7 @@ Skills involved
 
 The project has successfully demonstrated its capability not only to flag suspicious network traffic, but also to compile findings into a cybersecurity dashboard for better comparability.
 
-
-
-Dataset(7/10)
+Dataset
 Name: Cybersecurity Threat Detection Dataset
 Link to original data: https://www.kaggle.com/datasets/dhrubangtalukdar/cybersecurity-threat-detection-dataset?select=cybersecurity.csv
 
@@ -49,8 +47,8 @@ Attack_type - Type of attack, output values include: brute-force, port-scan, sql
 The first reason is that there are attributes e.g. bytes_sent, bytes_received which provides useful information into whether or not a connection is a cyberattack.
 The second reason is that this dataset contains the "Label" column. This makes it more viable to build a model that trains on existing data, because metrics e.g. accuracy can be evaluated using the "Label" column.
 
+Stage 1: Data Preparation
 
-Stage 1: Data Preparation(7.5/10)
 Data Cleaning
 There were records with empty values for the "url" column, so I decided to remove all these records from the dataset. 
 
@@ -75,14 +73,12 @@ This is the first trial of the model. So I have added only the following attribu
 
 All attributes I felt were equally important, however I felt that these 6 attributes combined carried the most information, which would mean that model findings were more interpretable even without adding any more attributes.
 
-
 Stage 2: Machine Learning
 
-Why Isolation Forest?(6.5/10)
+Why Isolation Forest?
 This was an anomaly detection project, and so I needed a machine learning algorithm typically suitable for anomaly detection. I found Isolation Forest to be quite applicable to my project, as well as it keeps the program simple while producing concise findings. 
 
-
-Why contamination? Why prioritize recall?(7.5/10)
+Why contamination? Why prioritize recall?
 Compared to the other features in Isolation Forest, contamination was the parameter that influenced the results the most. 
 Recall represents the true positive rate of the test. In other words, increasing recall increases the proportion of attacks that get detected by the system, which I felt in my project would make a better model.
 
@@ -113,12 +109,10 @@ Prioritizing recall meant that the model increased its frequency of flagging sus
 The project was successful because I was able to create the confusion matrix, and the statistics that I found could be interpreted into solving the project problem.
 
 
-
 Limitations
 As for the purposes of a project, this dataset consists of a large enough number of 10 000 to be analyzed, but I also understand that in real life scenarios, training a model requires millions and maybe even billions of attack data. 
 
 This model is only limited to analyzing CSV data, and it does assume similar future traffic. 
-
 
 
 Improvements
